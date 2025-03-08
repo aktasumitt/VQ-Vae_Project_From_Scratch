@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VQ-VAE Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        form {
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 50%;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        img {
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            height: auto;
+        }
+        .delete-btn {
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            padding: 5px 10px;
+        }
+        .delete-btn:hover {
+            background-color: darkred;
+        }
+    </style>
+</head>
+<body>
+    <h1>VQ-VAE Prediction</h1>
+    
+    <form action="/" method="post" enctype="multipart/form-data">
+        <input type="file" name="files" multiple required>  <!-- Çoklu dosya seçme -->
+        <button type="submit">Upload</button>
+    </form>
+    
+    <h2>Real Images</h2>
+    <div class="image-container">
+        {% for image in real_images %}
+            <div>
+                <img src="{{ url_for('uploaded_file', filename=image) }}">
+                <form action="{{ url_for('delete_real_image', filename=image) }}" method="post">
+                    <button type="submit" class="delete-btn">Delete</button>
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+    
+    <form action="/generate" method="post">
+        <button type="submit">Generate</button>
+    </form>
+    
+    <h2>Predicted Images</h2>
+    <div class="image-container">
+        {% for image in predict_images %}
+            <img src="{{ url_for('predicted_file', filename=image) }}">
+        {% endfor %}
+    </div>
+</body>
+</html>
