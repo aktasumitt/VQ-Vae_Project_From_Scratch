@@ -40,11 +40,9 @@ class PredictionModule():
                 out_decoder = model_decoder(out_latent)
                 
             for i,img in enumerate(out_decoder):
-                img_denormalized = (img * 0.5) + 0.5   #denormalization
-                
                 
                 img_path = os.path.join(self.config.predicted_img_save_path, f"prediction_{i}.jpg")
-                save_image(img_denormalized,img_path)
+                save_image(img,img_path)
                 
 
         except Exception as e:
