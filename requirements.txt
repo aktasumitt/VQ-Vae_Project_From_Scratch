@@ -7,3 +7,4 @@ Flask
 dvc
 dvc-s3
 mlflow
+dagshub
