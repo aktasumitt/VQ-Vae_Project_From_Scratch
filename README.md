@@ -35,10 +35,14 @@ To train the model, follow these steps:
    python -m src.pipeline.model_pipeline
    python -m src.pipeline.training_pipeline
    ```
+## Test Results:
 
-## Usage
-- The model automatically compresses and reconstructs images from the dataset.
-- The encoded latent vectors can be extracted and used as input features for other machine learning tasks.
+- Real Images:
+![Real Images](results/test/test_real_images.jpg)
+
+- Reconstructed Images:
+![Predicted Images](results/test/test_predict_images.jpg)
+
 
 ## License
 This project is released under the MIT License.
