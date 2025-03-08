@@ -1,0 +1,9 @@
+# For Training
+torch --index-url https://download.pytorch.org/whl/cu121
+torchvision --index-url https://download.pytorch.org/whl/cu124
+pathlib
+python-box
+Flask
+dvc
+dvc-s3
+mlflow
